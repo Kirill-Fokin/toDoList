@@ -1,0 +1,37 @@
+.note {
+  background-color: rgb(255, 255, 255);
+  font-size: 3rem;
+  display: flex;
+  height: 4rem;
+  width: 80rem;
+  border: 1px solid gray;
+  justify-content: space-between
+}
+
+.btn {
+  border: 1px solid black;
+  text-align: center;
+  background-color: aliceblue;
+  width: 8rem;
+  height: 3rem;
+  border-radius: 0.3rem;
+  font-size: 1.5rem;
+  font-weight: 200;
+  color: white;
+}
+
+.group {
+  width: 20rem;
+  height: 4rem;
+  align-items: center;
+  display: flex;
+  margin-right: 2rem;
+}
+
+.delete-btn {
+  background-color: rgb(253, 0, 0);
+}
+
+.done-btn {
+  background-color: rgb(0, 255, 55);
+}
