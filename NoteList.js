@@ -19,7 +19,6 @@ export class NoteList {
     container.innerHTML = '';
     container.append(this.list)
 
-
   }
 
   getNewID () {
@@ -29,27 +28,40 @@ export class NoteList {
   safe () {
     if (this._key) {
     let safeList = [];
-    
+    console.log('отправка сохранения')
+    if (this._notes.length === 0) {
+      localStorage.setItem(this._key, 'empty')
+    } 
     for (const note of this._notes) {
       safeList.push({
         id: note.is,
         name: note.name,
         done: note.done
       })
-      localStorage.setItem(this._key, JSON.stringify(safeList))
+      
     }
+    localStorage.setItem(this._key, JSON.stringify(safeList))
    }
   }
 
   update () {
-    console.log('update')
+
     let startList = this._def
     this._note = []
     this.list.innerHTML = '';
-     
+
+   
     if (this._key){
     let dataLS = localStorage.getItem(this._key)
+     console.log(dataLS)
+     if (dataLS == 'empty') {
+
+      this.checkEmpty()
+      this.safe()
+      return 
+     }
     if( dataLS !== "" && dataLS !== null  ) startList = JSON.parse(dataLS)
+    
     }
    if (startList.length > 0) {
     for (const obj of startList) {
@@ -62,27 +74,31 @@ export class NoteList {
         this._notes.push(newNote) 
     }
    }
-   this.safe()
+   
+
    this.checkEmpty()
   }
 
   add(name, done = false) {
+    // console.log('дело делоется')
     let newNote = new Note(this, name, done)
     newNote.id  =   this.getNewID() 
     console.log("ID: " + newNote.id )
     this._notes.push(newNote)
-    this.checkEmpty()
+
     this.safe()
+    this.checkEmpty()
   } 
 
   checkEmpty() {
-   if (this._notes.length == 0) {
+   let emtyElem = document.querySelector('empty')
+   if (this._notes.length == 0 ) {
     this.empty = document.createElement("div")
     this.empty.classList.add('empty')
-
-    this.empty.textContent = 'Empty'
+    
+    this.empty.textContent = 'список пуст'
     this.list.append(this.empty);
-
+   
    } else {
     if (this.empty) {
         this.empty.remove()
@@ -97,14 +113,16 @@ export class NoteList {
     if (value instanceof Note) {
       id = value.id
     }
-    for (let i=0; i < this._notes.length; i++) {
+    for (let i= 0; i < this._notes.length; i++) {
       if (this._notes[i].id == id) {
         this._notes.splice(i, 1)
       }
     }
     console.log(this._notes)
+    
     this.checkEmpty()
     this.safe()
+
   }
 
 }

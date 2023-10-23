@@ -1,11 +1,15 @@
-import { NoteList } from "./NoteList.js"
-import { Note } from "./Note.js"
+import { ToDo } from "./ToDo.js"
 
 
 
-let newList = new NoteList(document.getElementById('app'), 'my')
+let app = new ToDo(document.getElementById('app'))
 
 
+app.addUser('мои дела', 'my')
+app.addUser('покупки', 'lena')
+app.addUser('дела', 'papa')
+
+app.currentUser = 'my'
 // newList2.add(213)
 // newList2.add(42443)
 // newList2.add(42342)
@@ -13,9 +17,9 @@ let newList = new NoteList(document.getElementById('app'), 'my')
 
 
 
-document.getElementById('btn').addEventListener('click', function() {
-  newList.add('gdfgfdg')
+// document.getElementById('1').addEventListener('click', function() {
+//   newList.add('gdfgfdg')
 
-  console.log(newList._notes)
-})
+//   console.log(newList._notes)
+// })
 

@@ -3,8 +3,11 @@ import { NoteList } from "./NoteList.js"
 export class Note {
   _name = "";
   _done = false;
+  
 
-  constructor(container, name="", done=false) {
+   
+  constructor(container, name = " ", done = false) {
+    
     this.item = document.createElement("div");
     this.buttonGroup = document.createElement("div")
     this.nameSpan = document.createElement("span")
@@ -12,7 +15,6 @@ export class Note {
     this.deleteButton = document.createElement("button")
 
     this.item.classList.add('note')
-
    
     this.buttonGroup.classList.add("group")
     this.doneButton.classList.add("btn","done-btn")
@@ -21,8 +23,12 @@ export class Note {
     this.deleteButton.textContent = "Удалить"
 
    this.deleteButton.addEventListener('click', ()=> {
-     if (confirm('вы уверены?')) {
+     if (confirm('Вы уверены?')) {
         this.delete() 
+        
+        if (container instanceof NoteList) {
+          container.remove(this)
+        }
      }
    })
 
@@ -40,16 +46,17 @@ export class Note {
    this.item.append(this.buttonGroup)
 
    if (container instanceof NoteList) {
-     container.list.append(this.item);
-  } else {
-    container.append(this.item);
-  }
+    container.list.append(this.item)
+   } else {
+
+    container.append(this.item)
+   }
 
   }
   set name (value) {
     this._name = value;
     this.nameSpan.textContent = value;
-    console.log('сделано')
+    // console.log('сделано')
   }
 
   get name() {
