@@ -1,25 +1,20 @@
 import { ToDo } from "./ToDo.js"
 
-
+// import { clickSound } from "./Audio.js"
 
 let app = new ToDo(document.getElementById('app'))
 
-
-app.addUser('мои дела', 'my')
-app.addUser('покупки', 'lena')
-app.addUser('дела', 'papa')
+app.addUser('Мои дела', 'my')
+app.addUser('Покупки', 'lena')
+app.addUser('Дела', 'papa')
 
 app.currentUser = 'my'
-// newList2.add(213)
-// newList2.add(42443)
-// newList2.add(42342)
 
 
+const clickSound = new Audio('./assets/sound/on-sound.mp3')
+clickSound.autoplay = true;
+clickSound.muted="muted"
+clickSound.play()
 
-
-// document.getElementById('1').addEventListener('click', function() {
-//   newList.add('gdfgfdg')
-
-//   console.log(newList._notes)
-// })
+// app.removeUser('lena')
 

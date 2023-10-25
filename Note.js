@@ -3,8 +3,6 @@ import { NoteList } from "./NoteList.js"
 export class Note {
   _name = "";
   _done = false;
-  
-
    
   constructor(container, name = " ", done = false) {
     
@@ -15,44 +13,43 @@ export class Note {
     this.deleteButton = document.createElement("button")
 
     this.item.classList.add('note')
-   
     this.buttonGroup.classList.add("group")
     this.doneButton.classList.add("btn","done-btn")
     this.doneButton.textContent = "Готово"
     this.deleteButton.classList.add("btn", "delete-btn")
     this.deleteButton.textContent = "Удалить"
 
-   this.deleteButton.addEventListener('click', ()=> {
-     if (confirm('Вы уверены?')) {
+    this.deleteButton.addEventListener('click', ()=> {
+      if (confirm('Вы уверены?')) {
         this.delete() 
         
-        if (container instanceof NoteList) {
-          container.remove(this)
-        }
+     if (container instanceof NoteList) {
+       container.remove(this)
      }
-   })
+     }
+    })
 
-   this.doneButton.addEventListener('click', ()=> {
-    this.done = !this.done
-  })
+    this.doneButton.addEventListener('click', ()=> {
+      this.done = !this.done
+    })
 
-   this.name = name;
-   this.done = done;
-   this.container = container;
+    this.name = name;
+    this.done = done;
+    this.container = container;
    
-   this.buttonGroup.append(this.doneButton)
-   this.buttonGroup.append(this.deleteButton)
-   this.item.append(this.nameSpan)
-   this.item.append(this.buttonGroup)
+    this.buttonGroup.append(this.doneButton)
+    this.buttonGroup.append(this.deleteButton)
+    this.item.append(this.nameSpan)
+    this.item.append(this.buttonGroup)
 
-   if (container instanceof NoteList) {
-    container.list.append(this.item)
-   } else {
-
-    container.append(this.item)
-   }
+    if (container instanceof NoteList) {
+      container.list.append(this.item)
+    } else {
+      container.append(this.item)
+    }
 
   }
+
   set name (value) {
     this._name = value;
     this.nameSpan.textContent = value;

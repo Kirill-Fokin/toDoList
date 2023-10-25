@@ -1,26 +1,34 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
 .note {
   background-color: rgb(255, 255, 255);
   font-size: 3rem;
   display: flex;
   height: 4rem;
   width: 80rem;
-  border: 1px solid gray;
+  border-radius: 0.5rem;
+  border: 0px solid gray;
+  margin-bottom: 0.5rem;
+  background-color: rgb(217, 235, 251);
   justify-content: space-between
 }
 
 .btn {
-
   text-align: center;
   background-color: aliceblue;
   width: 8rem;
   height: 3rem;
-  border-radius: 0.3rem;
+  border-radius: 1.3rem;
   font-size: 1.5rem;
   font-weight: 200;
+  border: 0 ;
   color: rgb(83, 79, 79);
+  transition: background-color 1s;
 }
 
 .group {
+    column-gap: 1rem;
   width: 20rem;
   height: 4rem;
   align-items: center;
@@ -35,8 +43,9 @@
 .done-btn {
   background-color: rgb(0, 255, 55);
 }
+
 .empty {
-    margin-top: 2rem;;
+  margin-top: 2rem;;
   width: 100%;
   height: 12rem;
   border: 4px solid gray;
@@ -51,6 +60,7 @@
 .inp  {
   width: 55rem;
   height: 3rem;
+  margin-bottom: 2rem;
   border-radius: 1rem;
   font-size: 1.5rem;
 }
@@ -64,20 +74,19 @@
   width: 7rem;
   height: 2.5rem;
   background-color: rgb(96, 187, 239);
-    border: 0;
+  border: 0;
   display: flex;
   color: white;
-  font-size: 1rem;
-
+  font-size: 1.1rem;
 }
 
 .button-wrapper {
   border: 0;
   display: flex;
-  width: 7rem;
+  width: 8rem;
   height: 3.5rem;
   background-color: rgb(96, 187, 239);
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,21 +97,37 @@
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+ display: flex;
+ justify-content: center;
+ flex-direction: column;
+ align-items: center;
 }
 
-.active{ 
-    background-color: rgb(19, 165, 202);
+.active { 
+  background-color: rgb(19, 165, 202);
 }
 
 .nav {
+  margin-top: 1rem;
   width: 40rem; 
   display: flex;
+  margin-bottom: 3rem;
 }
 
 .btn-primary {
-    font-size: 1rem;
+  font-size: 1.2rem;
+  width: 8rem;
+  border: 0;
+  margin-right: 0.5rem;
+}
+
+h2 {
+  font-size: 2rem;   
+  color: rgb(54, 52, 52); 
+}
+
+span {
+  margin-left: 2rem;
+  font-size: 3rem;
+  color: rgb(73, 73, 73);
 }

@@ -4,7 +4,11 @@ export class ToDo {
     _users = [];
     _currentUser = 'todo';
 
-  constructor(container, currentTitle = 'Список дел', currentKey = 'todo', currentDef = [] ) {
+  constructor(container,
+     currentTitle = 'Список дел',
+     currentKey = 'todo',
+     currentDef = [] ){
+
     this.container = container;
 
     this.nav = document.createElement("nav")
@@ -37,31 +41,30 @@ export class ToDo {
     // this._notes = new NoteList(this.list)
 
     this.input.addEventListener("input", () => {
-        this.button.disabled = false;
-        if (this.input.value.length == 0) {
-            this.button.disabled = true;
-        }
+      this.button.disabled = false;
+      if (this.input.value.length == 0) {
+        this.button.disabled = true;
+      }
     });
 
    this.addUser(currentTitle, currentKey, currentDef)
 
-    this.form.addEventListener("submit", (e) => {
+   this.form.addEventListener("submit", (e) => {
         
-        e.preventDefault()
-        if (!this.input.value) {
-            return;
-        }
-        if (this._notes) {
-            this._notes.add(this.input.value)
-        }
-
-        this.button.disabled = true;
-        this.input.value = '';
+     e.preventDefault()
+     if (!this.input.value) {
+       return;
+     }
+     if (this._notes) {
+       this._notes.add(this.input.value)
+     }
+    this.button.disabled = true;
+    this.input.value = '';
     });
 }
 
 addUser(title, key, def = []) {
-    // Создание кнопки пользователя
+
     let button = document.createElement("button")
     button.classList.add("btn", "btn-primary");
     button.type = "button"
@@ -71,7 +74,7 @@ addUser(title, key, def = []) {
         this.currentUser = key;
     })
 
-    // Добавление пользователея в массив пользователей
+    
     this._users.push({
         title: title,
         key: key,
@@ -85,8 +88,8 @@ addUser(title, key, def = []) {
 
 
   set currentUser(value) {
-     this._currentUser = value;
-      
+
+    this._currentUser = value;
     let currentUser = null
 
     for (const user of this._users){
@@ -108,4 +111,23 @@ this._notes = new NoteList(this.list, value)
   get currentUser() {
     return this._currentUser;
   }
+
+  removeUser(key) {
+    if (this._users.length <= 1) {
+      console.log('Количество пользователей должно быть больше нуля');
+      return
+    }
+
+    for (let i = 0; i < this._users.length; i++) {
+      if (this._users[i].key == key) {
+        this._users[i].button.remove()
+        this._users.splice(i, 1)
+      }
+    }
+
+    if (this.currentUser == key) {
+      this.currentUser = this._users[0].key
+    }
+
+}
 }
